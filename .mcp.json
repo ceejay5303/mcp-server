@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "fortidast": {
+    "FortiDAST": {
       "type": "http",
-      "url": "https://hammer-derby-revision-decrease.trycloudflare.com",
+      "url": "https://hammer-derby-revision-decrease.trycloudflare.com/mcp",
       "oauth": true
     }
   }
