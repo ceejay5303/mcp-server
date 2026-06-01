@@ -1,5 +1,5 @@
 {
-  "name": "fortidast-skills",
+  "name": "FortiDAST Skills",
   "metadata": {
     "description": "FortiDAST application security skills and MCP connector packaging for AI-assisted DAST analysis."
   },
@@ -8,10 +8,10 @@
   },
   "plugins": [
     {
-      "name": "fortidast",
+      "name": "FortiDAST",
       "source": "./",
       "description": "FortiDAST MCP connector and analyst workflows for scan posture review, vulnerability triage, blocker analysis, remediation planning, and scan comparison.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "FortiDAST"
       },

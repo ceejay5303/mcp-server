@@ -1,6 +1,6 @@
 {
   "name": "FortiDAST",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "FortiDAST MCP connector and analyst workflows for asset inventory, scan posture review, vulnerability triage, blocker analysis, remediation planning, and scan comparison.",
   "author": {
     "name": "FortiDAST"
