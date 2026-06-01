@@ -1,120 +1,56 @@
-# FortiDAST MCP Server
+# FortiDAST MCP
 
-Python implementation of a read-only FortiDAST MCP server using the official `mcp` SDK and the FortiDAST Swagger-backed endpoints already present in `FortiDAST_RestApi_Swagger.yaml`.
+FortiDAST MCP lets Claude securely read FortiDAST scan data and use guided security-analysis skills for faster DAST review.
 
-## Current capability surface
+## What You Can Ask
 
-### Tools
+- List my FortiDAST assets.
+- Which scans are complete, stopped, or not started?
+- Review the posture of this application.
+- Show the most important vulnerabilities for this scan.
+- Why did this scan stop or fail?
+- Create a remediation brief for engineering.
+- Compare risk across completed scans.
 
-- `list_assets`
-- `auth_status`
-- `scan_status`
-- `get_scan_summary`
-- `get_scan_results`
+## Included Skills
 
-### Resources
+- Asset inventory
+- Scan posture review
+- Vulnerability triage
+- Scan blocker analysis
+- Executive risk summary
+- Remediation brief
+- Scan comparison
 
-- `fortidast://connection/status`
-- `fortidast://assets/catalog`
+## Connector Capabilities
 
-### Prompts
+This connector is read-only. It can retrieve:
 
-- `summarize_asset_posture`
-- `investigate_scan_blockers`
+- FortiDAST assets
+- Scan status
+- Target authentication status
+- Scan summary results
+- Detailed scan findings
 
-State-changing FortiDAST operations such as asset creation/deletion, authentication configuration, scan start, and scan stop are intentionally out of scope for this connector version.
+It does not start scans, stop scans, create assets, delete assets, or change FortiDAST configuration.
 
-### Tool Usage Guidance
+## Connect In Claude
 
-- Use `list_assets` first to discover canonical asset URLs and UUIDs.
-- Use `scan_status` before fetching results to check whether a scan is complete, stopped, not started, or still in progress.
-- Use `get_scan_summary` before `get_scan_results` for posture assessment.
-- Use `get_scan_results` only when individual findings, evidence, impact, or remediation details are required because detailed result payloads can be large or slow.
-- Use `auth_status` only to inspect existing authentication/scan-auth state; this connector does not configure target credentials.
+1. Open Claude.
+2. Go to **Customize**.
+3. Add this repository as a personal plugin.
+4. Open the FortiDAST MCP connector.
+5. Click **Connect**.
+6. Enter your FortiDAST username and API key when prompted.
 
+Claude can then use the FortiDAST connector and skills in chat.
 
-## Package selection
+## Authentication
 
-Direct runtime dependencies are pinned in [pyproject.toml](/home/mvrahul/fortidast_mcp/pyproject.toml):
+Your FortiDAST username and API key are entered on the FortiDAST MCP onboarding page. The connector validates them with FortiDAST before enabling access.
 
-- `mcp==1.27.0`
-- `cryptography==47.0.0`
-- `httpx==0.28.1`
-- `idna==3.15`
-- `pydantic==2.13.3`
-- `starlette==1.0.1`
-- `uvicorn==0.46.0`
+Use an API key that belongs to your FortiDAST account and has access to the assets you want Claude to review.
 
-The resolved environment should be re-audited after dependency changes with:
+## Current Scope
 
-```bash
-. .venv/bin/activate
-pip-audit -r requirements.lock.txt
-```
-
-## Environment
-
-Copy `.env.example` to `.env` and fill in the relevant section:
-
-- `MCP_PUBLIC_BASE_URL`, such as your public ngrok URL during local testing
-- `FORTIDAST_CREDENTIAL_STORE_KEY`
-
-Generate a local credential-store key with:
-
-```bash
-. .venv/bin/activate
-python - <<'PY'
-from cryptography.fernet import Fernet
-print(Fernet.generate_key().decode())
-PY
-```
-
-`MCP_PUBLIC_BASE_URL` and `FORTIDAST_CREDENTIAL_STORE_KEY` are required.
-
-## Claude Web Local Testing
-
-Claude Web cannot reach `localhost` directly. Expose the local server through HTTPS:
-
-```bash
-. .venv/bin/activate
-export MCP_PUBLIC_BASE_URL=https://your-tunnel.example
-export FORTIDAST_CREDENTIAL_STORE_KEY=...
-python -m fortidast_mcp
-```
-
-In another terminal:
-
-```bash
-ngrok http 8080
-```
-
-Then add this custom connector URL in Claude Web:
-
-```text
-https://your-tunnel.example/mcp
-```
-
-Claude should discover the protected resource metadata, register an OAuth client, redirect to `/oauth/connect`, and ask for the user's FortiDAST username and API key.
-
-## Install
-
-```bash
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -e .
-```
-
-## Run
-
-```bash
-. .venv/bin/activate
-python -m fortidast_mcp
-```
-
-The MCP server is exposed over Streamable HTTP at `http://127.0.0.1:8080/mcp`.
-
-## Operational endpoints
-
-- `GET /healthz`
-- `GET /me`
-- `GET /v1/user/fortidast-credentials`
+This is a read-only FortiDAST MCP connector for Claude plugin testing and review workflows.
