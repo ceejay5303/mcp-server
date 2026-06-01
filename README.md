@@ -32,17 +32,6 @@ State-changing FortiDAST operations such as asset creation/deletion, authenticat
 - Use `get_scan_results` only when individual findings, evidence, impact, or remediation details are required because detailed result payloads can be large or slow.
 - Use `auth_status` only to inspect existing authentication/scan-auth state; this connector does not configure target credentials.
 
-## Auth model
-
-This server uses one auth model: OAuth-style connector onboarding. Claude receives an MCP access token from this server, while the user enters their FortiDAST username and API key on this server's `/oauth/connect` page.
-
-### Client to MCP server
-
-The server exposes OAuth metadata, dynamic client registration, `/authorize`, `/token`, and `/oauth/connect`. The onboarding page asks for FortiDAST username and API key, validates those credentials with FortiDAST, stores them encrypted, and then issues MCP access/refresh tokens to Claude.
-
-### MCP server to FortiDAST
-
-The MCP bearer token is this server's own access token. The server resolves that token to encrypted per-user FortiDAST credentials collected during `/oauth/connect`. Per-user FortiDAST credentials are stored in an encrypted local file using `FORTIDAST_CREDENTIAL_STORE_KEY`.
 
 ## Package selection
 
