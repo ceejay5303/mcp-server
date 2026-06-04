@@ -2,7 +2,7 @@
   "mcpServers": {
     "fortidast-mcp-new-2": {
       "type": "https",
-      "url": "https://sso.fortidast.forticloud:8080/mcp",
+      "url": "https://sso.fortidast.forticloud/mcp",
       "oauth": true
     }
   }
