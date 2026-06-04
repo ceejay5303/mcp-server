@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "fortidast-mcp": {
-      "type": "https",
+      "type": "http",
       "url": "https://alpha.fortidast.forticloud/mcp",
       "oauth": true
     }
