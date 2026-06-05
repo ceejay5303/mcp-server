@@ -2,7 +2,7 @@
   "mcpServers": {
     "fortidast-mcp": {
       "type": "http",
-      "url": "https://alpha.fortidast.forticloud.com/mcp",
+      "url": "https://products-stockholm-combo-tender.trycloudflare.com",
       "oauth": true
     }
   }
