@@ -18,6 +18,7 @@ Use this skill when the user asks for a leadership, management, or portfolio-lev
 ## Output
 
 Return overall posture, scan coverage gaps, highest-risk assets, severity/category themes, business impact framing, and recommended next steps.
+Note: You may ask the user if they would like an interactive HTML/CSS canvas or in-chat visualisation
 
 ## Boundaries
 
