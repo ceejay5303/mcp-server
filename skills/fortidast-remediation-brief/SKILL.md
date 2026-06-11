@@ -18,6 +18,7 @@ Use this skill when the user asks for a remediation plan, engineering handoff, J
 ## Output
 
 Return prioritized remediation tasks with title, priority, affected URLs, evidence summary, recommended fix, acceptance criteria, and scan caveats.
+Note: You may ask the user if they would like an interactive HTML/CSS canvas or in-chat visualisation
 
 ## Boundaries
 
