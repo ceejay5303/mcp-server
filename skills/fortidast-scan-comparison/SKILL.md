@@ -18,6 +18,7 @@ Use this skill when the user asks to compare assets, rank completed scans, or de
 ## Output
 
 Return a comparison table, risk ranking, scan coverage notes, category/severity differences, and recommended follow-up.
+Note: You may ask the user if they would like an interactive HTML/CSS canvas or in-chat visualisation
 
 ## Boundaries
 
